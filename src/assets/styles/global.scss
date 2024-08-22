@@ -5,12 +5,12 @@ body {
   font-size: 16px;
   font-family: sans-serif;
 
-  background-color: $secondary-clr;
-  color: $primary-clr;
+  background-color: $clr-secondary;
+  color: $clr-primary;
 
   button {
-    color: $azure-clr;
-    border: solid 1px $azure-clr;
+    color: $clr-azure;
+    border: solid 1px $clr-azure;
     padding: $space-6 $space-12;
   }
 }
