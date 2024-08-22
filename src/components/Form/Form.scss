@@ -1,0 +1,32 @@
+// @import "../../assets//styles/abstracts/variables.scss";
+@import "@src/assets//styles//global.scss";
+
+.form {
+  background-color: white;
+  max-width: 500px;
+  margin: $space-100 auto;
+  border: solid 1px $clr-secondary;
+  background-color: $clr-add-2;
+  border-radius: $space-12;
+  color: $clr-secondary;
+  overflow: hidden;
+
+  display: flex;
+  flex-direction: column;
+  row-gap: $space-24;
+
+  h1 {
+    margin: 0;
+    text-align: center;
+    background-color: $clr-add;
+    padding: $space-12;
+  }
+
+  .main {
+    padding: $space-12;
+  }
+}
+
+hr {
+  margin: $space-24 0;
+}

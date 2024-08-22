@@ -1,0 +1,22 @@
+@import "@src/assets//styles//abstracts/variables.scss";
+
+.button {
+  width: 100%;
+  color: $clr-white;
+  border-color: $clr-add;
+  background-color: $clr-add;
+  border-radius: $space-4;
+  margin: $space-24 0 $space-8 0;
+  padding: $space-8 $space-16;
+  cursor: pointer;
+  transition: all 150ms;
+
+  &:hover {
+    opacity: 80%;
+  }
+
+  &:disabled {
+    opacity: 60%;
+    pointer-events: none;
+  }
+}

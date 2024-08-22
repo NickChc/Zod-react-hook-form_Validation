@@ -1,5 +1,6 @@
 @import "normalize.css";
 @import "abstracts/variables.scss";
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Merriweather:wght@400;700&display=swap");
 
 body {
   font-size: 16px;
@@ -7,10 +8,22 @@ body {
 
   background-color: $clr-secondary;
   color: $clr-primary;
+  font-family: "Inter", sans-serif;
+
+  h1,
+  h2,
+  h3 {
+    font-family: "Merriweather", serif;
+  }
 
   button {
-    color: $clr-azure;
-    border: solid 1px $clr-azure;
+    color: $clr-add;
+    border: solid 1px $clr-add;
+    padding: $space-6 $space-12;
+  }
+
+  input,
+  button {
     padding: $space-6 $space-12;
   }
 }

@@ -4,7 +4,6 @@ export function PublicLayout() {
   return (
     <>
       <Outlet />
-      <h1>LAYOUT</h1>
     </>
   );
 }
