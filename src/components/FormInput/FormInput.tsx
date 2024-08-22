@@ -1,24 +1,40 @@
 import "@src/components/FormInput/FormInput.scss";
 import { useState } from "react";
+import {
+  FieldValues,
+  Path,
+  RegisterOptions,
+  UseFormRegister,
+} from "react-hook-form";
 
-interface FormInputProps {
+interface FormInputProps<T extends FieldValues> {
+  register: UseFormRegister<T>;
+  name: Path<T>;
   label?: string;
-  value?: string;
-  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   type?: "text" | "password";
+  rules?: RegisterOptions<T>;
+  [key: string]: any;
 }
 
-export function FormInput({ label, value, onChange, type }: FormInputProps) {
+export function FormInput<T extends FieldValues>({
+  label,
+  type,
+  register,
+  name,
+  rules,
+  ...rest
+}: FormInputProps<T>) {
   const [showPassword, setShowPassword] = useState(false);
 
   return (
     <div className="wrapper">
       <label>{label}</label>
       <input
+        {...register(name, rules)}
+        {...rest}
+        name={name as string}
         type={type === "password" && !showPassword ? "password" : "text"}
         className="input"
-        value={value}
-        onChange={onChange}
       />
       {type === "password" && (
         <span className="eye" onClick={() => setShowPassword(!showPassword)}>
