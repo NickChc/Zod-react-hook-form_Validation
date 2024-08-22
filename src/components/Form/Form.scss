@@ -1,5 +1,5 @@
 // @import "../../assets//styles/abstracts/variables.scss";
-@import "@src/assets//styles//global.scss";
+@import "src/assets//styles//global.scss";
 
 .form {
   background-color: white;
@@ -23,7 +23,7 @@
   }
 
   .main {
-    padding: $space-12;
+    padding: 0 $space-24 $space-12 $space-24;
   }
 }
 

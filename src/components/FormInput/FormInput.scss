@@ -3,6 +3,22 @@
 .wrapper {
   display: flex;
   flex-direction: column;
+
+  position: relative;
+
+  .eye {
+    user-select: none;
+    aspect-ratio: 1 / 1;
+    width: 25px;
+    display: grid;
+    place-items: center;
+    color: $clr-add;
+    cursor: pointer;
+
+    position: absolute;
+    top: 50%;
+    right: $space-4;
+  }
 }
 
 .wrapper label {

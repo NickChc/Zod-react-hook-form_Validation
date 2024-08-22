@@ -17,6 +17,7 @@ export function SignInPage() {
         />
         <hr />
         <FormInput
+          type="password"
           label="Password:"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
