@@ -22,8 +22,7 @@ body {
     padding: $space-6 $space-12;
   }
 
-  input,
-  button {
-    padding: $space-6 $space-12;
+  .error {
+    color: $clr-alert;
   }
 }

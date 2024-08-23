@@ -1,35 +1,72 @@
-@import "@src/assets//styles//abstracts/variables.scss";
+@import "src/assets//styles//abstracts/variables.scss";
 
 .wrapper {
   display: flex;
   flex-direction: column;
 
-  position: relative;
+  .error-field {
+    overflow: hidden;
+    color: $clr-alert;
+    font-size: 1em;
+    transform: scaleY(0);
+    opacity: 0;
 
-  .eye {
-    user-select: none;
-    aspect-ratio: 1 / 1;
-    width: 25px;
-    display: grid;
-    place-items: center;
-    color: $clr-add;
-    cursor: pointer;
+    transform-origin: top;
 
-    position: absolute;
-    top: 50%;
-    right: $space-4;
+    transition: transform 300ms ease-in, opacity 300ms ease-in;
+
+    &.open {
+      transform: scaleY(1);
+      opacity: 1;
+
+      @starting-style {
+        transform: scaleY(0);
+        opacity: 0;
+      }
+    }
+  }
+
+  .relative {
+    display: flex;
+    position: relative;
+
+    .eye {
+      user-select: none;
+      aspect-ratio: 1 / 1;
+      display: grid;
+      place-items: center;
+      color: $clr-add;
+      cursor: pointer;
+
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      right: 0;
+      right: $space-4;
+
+      i {
+        font-size: 1.6em;
+      }
+    }
+  }
+
+  label {
+    font-size: 1.4em;
+    font-weight: 600;
+    color: $clr-white;
   }
 }
 
-.wrapper label {
-  font-size: 1.4em;
-  font-weight: 600;
-  color: $clr-white;
-}
-
 .input {
+  width: 100%;
   outline: none;
   border: solid 1px $clr-secondary;
   margin: $space-12 0;
   border-radius: $space-4;
+}
+
+.input.error {
+  border-color: $clr-alert;
+  color: $clr-alert;
+  border-color: $clr-alert;
 }

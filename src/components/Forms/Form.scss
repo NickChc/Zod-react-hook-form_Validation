@@ -3,17 +3,26 @@
 
 .form {
   background-color: white;
-  max-width: 500px;
-  margin: $space-100 auto;
   border: solid 1px $clr-secondary;
   background-color: $clr-add-2;
   border-radius: $space-12;
   color: $clr-secondary;
-  overflow: hidden;
+  overflow: hidden auto;
 
   display: flex;
   flex-direction: column;
-  row-gap: $space-24;
+  row-gap: 1em;
+  max-height: 90dvh;
+
+  margin: 10vh auto;
+  max-width: 90%;
+  font-size: 0.75rem;
+
+  @media (min-width: 600px) {
+    margin: 20vh auto;
+    max-width: 500px;
+    font-size: 1rem;
+  }
 
   h1 {
     margin: 0;
@@ -23,10 +32,15 @@
   }
 
   .main {
-    padding: 0 $space-24 $space-12 $space-24;
+    padding: 0 $space-24 0.5em $space-24;
+  }
+
+  input,
+  button {
+    padding: 0.75em 1em;
   }
 }
 
 hr {
-  margin: $space-24 0;
+  margin: 1em 0;
 }
