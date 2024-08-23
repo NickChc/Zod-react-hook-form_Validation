@@ -14,7 +14,7 @@ interface FormInputProps<T extends FieldValues> {
   type?: "text" | "password";
   rules?: RegisterOptions<T>;
   error?: string | null;
-  onChange?: (e?: React.ChangeEvent) => void;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   [key: string]: any;
 }
 
@@ -38,7 +38,14 @@ export function FormInput<T extends FieldValues>({
           {...register(name, rules)}
           {...rest}
           name={name as string}
-          onChange={onChange}
+          onChange={
+            onChange
+              ? (e) => {
+                  register(name).onChange(e);
+                  onChange(e);
+                }
+              : undefined
+          }
           type={type === "password" && !showPassword ? "password" : "text"}
           className={`input  ${error ? "error" : ""}`}
         />

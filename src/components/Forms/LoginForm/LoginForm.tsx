@@ -10,7 +10,7 @@ const loginSchema = z.object({
   password: z
     .string()
     .min(1, "Enter password")
-    .min(6, "Password must be larger than 6 chars")
+    .min(6, "Password must contain at least 6 letters")
     .regex(/[0-9]/, "Password must include number"),
 });
 
@@ -21,19 +21,18 @@ export function LoginForm() {
     register,
     handleSubmit,
     clearErrors,
-    trigger,
     formState: { errors, isSubmitting: loading },
   } = useForm<TFormData>({
+    mode: "onSubmit",
+    reValidateMode: "onSubmit",
     resolver: zodResolver(loginSchema),
   });
 
-  function clearError(error: keyof TFormData) {
-    clearErrors(error);
+  function onChange(e: React.ChangeEvent<HTMLInputElement>) {
+    clearErrors(e?.target.name as keyof TFormData);
   }
 
   async function onSubmit(data: TFormData) {
-    await trigger();
-
     await new Promise((resolve) => {
       setTimeout(resolve, 1000);
     });
@@ -51,25 +50,18 @@ export function LoginForm() {
       <h1>Log In</h1>
       <div className="main">
         <FormInput
-          onChange={() => clearError("email")}
-          error={errors.email?.message}
           register={register}
-          rules={{
-            required: "Enter email",
-            minLength: {
-              value: 5,
-              message: "email must be longer than 5 chars",
-            },
-          }}
+          onChange={onChange}
+          error={errors.email?.message}
           name="email"
           label="Email:"
         />
+
         <hr />
         <FormInput
-          onChange={() => clearError("password")}
+          onChange={onChange}
           error={errors.password?.message}
           register={register}
-          rules={{ required: "Enter password" }}
           name="password"
           type="password"
           label="Password:"
