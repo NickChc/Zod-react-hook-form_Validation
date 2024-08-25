@@ -1,4 +1,6 @@
+import "@src/components/Modal/Modal.scss";
 import { TEditValue } from "@src/@types/general";
+import { UpdateForm } from "@src/components/Forms/UpdateForm";
 
 interface ModalProps {
   editValue: TEditValue | null;
@@ -11,9 +13,7 @@ export function Modal({ editValue, closeModal }: ModalProps) {
   return (
     <div className="modal" onMouseDown={closeModal}>
       <div className="modal-content" onMouseDown={(e) => e.stopPropagation()}>
-        <form>
-          <h2>{editValue}</h2>
-        </form>
+        <UpdateForm callbackFn={closeModal} editValue={editValue} />
       </div>
     </div>
   );

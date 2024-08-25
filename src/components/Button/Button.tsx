@@ -6,6 +6,7 @@ interface ButtonProps {
   loading?: boolean;
   laodingText?: string;
   onClick?: () => void;
+  variation?: "primary" | "secondary";
 }
 
 export function Button({
@@ -14,9 +15,15 @@ export function Button({
   laodingText,
   onClick,
   type = "button",
+  variation,
 }: PropsWithChildren<ButtonProps>) {
   return (
-    <button type={type} className="button" disabled={loading} onClick={onClick}>
+    <button
+      type={type}
+      className={`button ${variation === "secondary" ? "secondary" : ""}`}
+      disabled={loading}
+      onClick={onClick}
+    >
       {laodingText && loading ? laodingText : children}
     </button>
   );

@@ -1,0 +1,31 @@
+@import "src/assets//styles//abstracts/variables.scss";
+
+.modal {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+
+  backdrop-filter: blur($space-2);
+  display: grid;
+  place-items: center;
+
+  form {
+    border: solid $space-2 $clr-add;
+    width: 95%;
+    padding: $space-12;
+
+    h1 {
+      border-radius: $space-6 $space-6 0 0;
+    }
+
+    & > div {
+      text-align: start;
+    }
+  }
+}
+
+.modal-content {
+  width: 500px;
+}
