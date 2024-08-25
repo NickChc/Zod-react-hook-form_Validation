@@ -1,33 +1,16 @@
 import "@src/components/Forms/Form.scss";
-import { useForm } from "react-hook-form";
 import { FormInput } from "@src/components/FormInput";
 import { Button } from "@src/components/Button";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
 import { Link } from "react-router-dom";
-
-const loginSchema = z.object({
-  email: z.string().min(1, "Enter email").email("Invalid email format"),
-  password: z
-    .string()
-    .min(1, "Enter password")
-    .min(6, "Password must contain at least 6 letters")
-    .regex(/[0-9]/, "Password must include number"),
-});
-
-type TFormData = z.infer<typeof loginSchema>;
+import { TFormData, useLogin } from "@src/hooks/useLogin/useLogin";
 
 export function LoginForm() {
   const {
-    register,
-    handleSubmit,
     clearErrors,
+    handleSubmit,
+    register,
     formState: { errors, isSubmitting: loading },
-  } = useForm<TFormData>({
-    mode: "onSubmit",
-    reValidateMode: "onSubmit",
-    resolver: zodResolver(loginSchema),
-  });
+  } = useLogin();
 
   function onChange(e: React.ChangeEvent<HTMLInputElement>) {
     clearErrors(e?.target.name as keyof TFormData);
