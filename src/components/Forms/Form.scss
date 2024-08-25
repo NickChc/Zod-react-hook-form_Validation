@@ -1,27 +1,52 @@
 // @import "../../assets//styles/abstracts/variables.scss";
 @import "src/assets//styles//global.scss";
 
+::-webkit-scrollbar {
+  width: $space-6;
+  background-color: $clr-add-2;
+}
+
+::-webkit-scrollbar-track {
+  width: 100%;
+  border-radius: $space-6;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: $clr-primary;
+  border-radius: $space-4;
+  width: $space-4;
+}
+
 .form {
+  width: 100%;
+  min-width: fit-content;
+
   background-color: white;
   border: solid 1px $clr-secondary;
   background-color: $clr-add-2;
   border-radius: $space-12;
   color: $clr-secondary;
-  overflow: hidden auto;
+  overflow: hidden;
 
   display: flex;
   flex-direction: column;
   row-gap: 1em;
-  max-height: 90dvh;
 
-  margin: 10vh auto;
+  margin: $space-52 auto;
   max-width: 90%;
   font-size: 0.75rem;
 
   @media (min-width: 600px) {
-    margin: 20vh auto;
     max-width: 500px;
     font-size: 1rem;
+  }
+
+  @media (min-height: 900px) {
+    margin: 5vh auto;
+  }
+
+  input[type="date"] {
+    cursor: pointer;
   }
 
   h1 {
@@ -33,6 +58,33 @@
 
   .main {
     padding: 0 $space-24 0.5em $space-24;
+    overflow: hidden auto;
+  }
+
+  .a {
+    padding-top: $space-12;
+    display: flex;
+    justify-content: end;
+
+    a {
+      text-decoration: none;
+      color: $clr-add;
+      font-weight: 600;
+      font-size: 1.1em;
+
+      &::after {
+        content: "";
+        display: block;
+        width: 0;
+        height: $space-2;
+        background-color: $clr-add;
+        transition: width 200ms ease-in;
+      }
+
+      &:hover::after {
+        width: 100%;
+      }
+    }
   }
 
   input,

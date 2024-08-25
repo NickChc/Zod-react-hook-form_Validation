@@ -4,6 +4,7 @@ import { FormInput } from "@src/components/FormInput";
 import { Button } from "@src/components/Button";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
+import { Link } from "react-router-dom";
 
 const loginSchema = z.object({
   email: z.string().min(1, "Enter email").email("Invalid email format"),
@@ -33,13 +34,12 @@ export function LoginForm() {
   }
 
   async function onSubmit(data: TFormData) {
-    await new Promise((resolve) => {
-      setTimeout(resolve, 1000);
-    });
-
-    console.log(data);
-
     try {
+      await new Promise((resolve) => {
+        setTimeout(resolve, 1000);
+      });
+
+      console.log(data);
     } catch (err: any) {
       console.log(err.message);
     }
@@ -70,6 +70,9 @@ export function LoginForm() {
         <Button loading={loading} laodingText="Signing In..." type="submit">
           Sign In
         </Button>
+        <div className="a">
+          <Link to={"/sign-up"}>Don't have an account yet?</Link>
+        </div>
       </div>
     </form>
   );
