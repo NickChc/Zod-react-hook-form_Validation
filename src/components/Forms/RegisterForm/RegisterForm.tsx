@@ -62,10 +62,15 @@ export function RegisterForm() {
       });
 
       const accounts = JSON.parse(localStorage.getItem(ACCOUNTS) || "[]");
-      accounts.push(data);
+      const { name, email, password, date } = data;
+
+      accounts.push({ name, email, password, birthday: date });
 
       localStorage.setItem(ACCOUNTS, JSON.stringify(accounts));
-      localStorage.setItem(USER, JSON.stringify(data));
+      localStorage.setItem(
+        USER,
+        JSON.stringify({ name, email, password, birthday: date })
+      );
 
       navigate("/profile");
     } catch (err: any) {

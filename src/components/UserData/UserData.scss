@@ -19,6 +19,7 @@
   }
 
   .pair {
+    user-select: none;
     white-space: nowrap;
     cursor: pointer;
     display: flex;
