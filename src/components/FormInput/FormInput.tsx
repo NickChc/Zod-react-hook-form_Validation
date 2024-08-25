@@ -11,7 +11,7 @@ interface FormInputProps<T extends FieldValues> {
   register: UseFormRegister<T>;
   name: Path<T>;
   label?: string;
-  type?: "text" | "password" | "date";
+  type?: "text" | "password" | "checkbox";
   rules?: RegisterOptions<T>;
   error?: string | null;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
@@ -31,7 +31,7 @@ export function FormInput<T extends FieldValues>({
   const [showPassword, setShowPassword] = useState(false);
 
   return (
-    <div className="wrapper">
+    <div className={`wrapper ${type === "checkbox" ? "wrapper-checkbox" : ""}`}>
       <label>{label}</label>
       <div className="relative">
         <input
@@ -51,6 +51,7 @@ export function FormInput<T extends FieldValues>({
           }
           className={`input  ${error ? "error" : ""}`}
         />
+        {type === "checkbox" && <a href="#">Terms and Policies</a>}
         {type === "password" && (
           <span className="eye" onClick={() => setShowPassword(!showPassword)}>
             {showPassword ? (
@@ -61,7 +62,9 @@ export function FormInput<T extends FieldValues>({
           </span>
         )}
       </div>
-      <div className={`error-field ${error ? "open" : ""}`}>{error || ""}</div>
+      <div className={`error-field ${error ? "open" : "absolute"}`}>
+        {error || ""}
+      </div>
     </div>
   );
 }

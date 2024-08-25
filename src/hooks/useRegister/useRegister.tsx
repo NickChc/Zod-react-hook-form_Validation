@@ -29,6 +29,9 @@ const registerSchema = z
       .string()
       .min(1, "Enter your birth date")
       .regex(dateRegex, "Invalid date format (yyyy-mm-dd)"),
+    terms: z.boolean().refine((val) => val === true, {
+      message: "Agree to terms to continue",
+    }),
   })
   .refine((data) => data.password === data["repeat-password"], {
     path: ["repeat-password"],
@@ -59,8 +62,6 @@ const registerSchema = z
   .refine(
     ({ date }) => {
       const [, month, day] = date.split("-").map(Number);
-
-      console.log(month);
 
       if (month_31.some((m) => m === month) && day > 31) {
         return false;

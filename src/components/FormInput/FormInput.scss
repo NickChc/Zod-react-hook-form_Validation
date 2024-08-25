@@ -30,6 +30,15 @@
     display: flex;
     position: relative;
 
+    display: flex;
+    align-items: center;
+    column-gap: $space-16;
+
+    a {
+      text-decoration: none;
+      color: $clr-add;
+    }
+
     .eye {
       user-select: none;
       aspect-ratio: 1 / 1;
@@ -56,6 +65,18 @@
   }
 }
 
+.wrapper-checkbox {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr;
+  column-gap: $space-12;
+}
+
+.wrapper-checkbox label {
+  font-size: 1.2em;
+  font-weight: 700;
+}
+
 .input {
   width: 100%;
   outline: none;
@@ -64,8 +85,23 @@
   border-radius: $space-4;
 }
 
+.input[type="checkbox"] {
+  cursor: pointer;
+  padding: $space-12;
+  width: $space-12;
+  aspect-ratio: 1 / 1;
+
+  @media (min-width: $screen-sm) {
+    width: $space-20;
+  }
+}
+
 .input.error {
   border-color: $clr-alert;
   color: $clr-alert;
   border-color: $clr-alert;
+}
+
+.absolute {
+  position: absolute;
 }

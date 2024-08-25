@@ -3,6 +3,7 @@ import { FormInput } from "@src/components/FormInput";
 import { Button } from "@src/components/Button";
 import { TRegisterData, useRegister } from "@src/hooks/useRegister/useRegister";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 export function RegisterForm() {
   const [prevDate, setPrevDate] = useState("");
@@ -24,7 +25,6 @@ export function RegisterForm() {
     const isRemoving = prevDate.length > date.length;
 
     if (isRemoving) {
-      // setValue("date", date.slice(0, -1));
       return;
     }
 
@@ -120,9 +120,23 @@ export function RegisterForm() {
           label="Repeat Password:"
         />
 
+        <hr />
+
+        <FormInput
+          onChange={onChange}
+          type="checkbox"
+          name="terms"
+          register={register}
+          label="Agree to terms"
+          error={errors.terms?.message}
+        />
+
         <Button loading={loading} laodingText="Loading..." type="submit">
           Sign Up
         </Button>
+        <div className="a">
+          <Link to={"/"}>Already have an account?</Link>
+        </div>
       </div>
     </form>
   );
