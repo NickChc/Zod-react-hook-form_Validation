@@ -1,12 +1,10 @@
 import "@src/components/Forms/Form.scss";
 import { TEditValue, TUser } from "@src/@types/general";
 import { FormInput } from "@src/components/FormInput";
-import { useForm } from "react-hook-form";
-import { z } from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@src/components/Button";
 import { useGlboalProvider } from "@src/providers/GlobalProvider";
 import { ACCOUNTS, USER } from "@src/config/storageKeys";
+import { useUpdate } from "@src/hooks/useUpdate";
 
 interface UpdateFormProps {
   editValue: TEditValue;
@@ -15,22 +13,12 @@ interface UpdateFormProps {
 
 export function UpdateForm({ editValue, callbackFn }: UpdateFormProps) {
   const { user, setUser } = useGlboalProvider();
-
-  const editSchema = z.object({
-    [editValue]: z.string().min(1, `Enter ${editValue} first`),
-  });
-
   const {
     handleSubmit,
     register,
     clearErrors,
     formState: { errors, isSubmitting: loading },
-  } = useForm({
-    mode: "onSubmit",
-    reValidateMode: "onSubmit",
-    resolver: zodResolver(editSchema),
-    defaultValues: { [editValue]: user?.[editValue] },
-  });
+  } = useUpdate(editValue);
 
   async function onSubmit(data: { [editValue: string]: string | undefined }) {
     if (loading) return;
