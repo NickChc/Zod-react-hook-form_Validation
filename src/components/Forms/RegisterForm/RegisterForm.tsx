@@ -64,7 +64,7 @@ export function RegisterForm() {
       const accounts = JSON.parse(localStorage.getItem(ACCOUNTS) || "[]");
       accounts.push(data);
 
-      localStorage.setItem(ACCOUNTS, accounts);
+      localStorage.setItem(ACCOUNTS, JSON.stringify(accounts));
       localStorage.setItem(USER, JSON.stringify(data));
 
       navigate("/profile");
