@@ -6,10 +6,11 @@ import {
   RouteObject,
   RouterProvider,
 } from "react-router-dom";
-import { PublicLayout } from "./layouts/PublicLayout";
+import { PublicLayout } from "@src/layouts/PublicLayout";
 
 const SignInPage = lazy(() => import("@src/views/SignInPage"));
 const SignUpPage = lazy(() => import("@src/views/SignUpPage"));
+const ProfilePage = lazy(() => import("@src/views/ProfilePage"));
 
 const routes: RouteObject[] = [
   {
@@ -23,6 +24,10 @@ const routes: RouteObject[] = [
       {
         path: "/sign-up",
         element: <SignUpPage />,
+      },
+      {
+        path: "/profile",
+        element: <ProfilePage />,
       },
     ],
   },

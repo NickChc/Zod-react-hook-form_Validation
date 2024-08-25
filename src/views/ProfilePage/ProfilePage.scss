@@ -1,0 +1,55 @@
+@import "src/assets//styles//abstracts/variables.scss";
+
+.profile {
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
+
+  header {
+    display: grid;
+    grid-template-columns: 1fr;
+    row-gap: $space-12;
+    column-gap: $space-20;
+    justify-content: space-between;
+    background-color: $clr-add;
+    color: $clr-secondary;
+    padding: $space-12 $space-24;
+
+    position: relative;
+
+    @media (min-width: $screen-xsm) {
+      display: flex;
+    }
+
+    @media (min-width: $screen-sm) {
+      justify-content: center;
+    }
+
+    button {
+      cursor: pointer;
+      border: solid $space-2 $clr-add;
+      border-radius: $space-4;
+      font-weight: 600;
+      transition-duration: 150ms;
+      transform-origin: top;
+
+      &:active {
+        opacity: 70%;
+        scale: 90%;
+      }
+
+      &:hover {
+        background-color: $clr-add;
+        color: $clr-white;
+        border-color: $clr-white;
+      }
+
+      @media (min-width: $screen-sm) {
+        position: absolute;
+        right: $space-20;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+    }
+  }
+}

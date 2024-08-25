@@ -3,10 +3,12 @@ import { FormInput } from "@src/components/FormInput";
 import { Button } from "@src/components/Button";
 import { TRegisterData, useRegister } from "@src/hooks/useRegister/useRegister";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { ACCOUNTS, USER } from "@src/config/storageKeys";
 
 export function RegisterForm() {
   const [prevDate, setPrevDate] = useState("");
+  const navigate = useNavigate();
 
   const {
     clearErrors,
@@ -59,7 +61,13 @@ export function RegisterForm() {
         setTimeout(resolve, 2000);
       });
 
-      console.log(data);
+      const accounts = JSON.parse(localStorage.getItem(ACCOUNTS) || "[]");
+      accounts.push(data);
+
+      localStorage.setItem(ACCOUNTS, accounts);
+      localStorage.setItem(USER, JSON.stringify(data));
+
+      navigate("/profile");
     } catch (err: any) {
       console.log(err.message);
     }
