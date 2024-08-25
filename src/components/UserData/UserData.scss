@@ -1,0 +1,42 @@
+@import "src/assets//styles//abstracts/variables.scss";
+
+.user-data {
+  padding: $space-12;
+  border-radius: $space-6;
+  background-color: $clr-add-2;
+  border: solid $space-2 $clr-add;
+  color: $clr-add;
+
+  .pair-wrapper {
+    width: 50%;
+    margin: 0 auto;
+
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    row-gap: $space-10;
+    text-align: start;
+  }
+
+  .pair {
+    white-space: nowrap;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    column-gap: $space-16;
+    justify-content: space-between;
+    line-height: 1.75em;
+
+    i {
+      display: none;
+      padding: $space-4;
+      background-color: transparent;
+      border: 0;
+      cursor: pointer;
+    }
+
+    &:hover i {
+      display: block;
+    }
+  }
+}

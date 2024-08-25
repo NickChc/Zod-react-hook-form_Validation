@@ -5,6 +5,15 @@
   margin: 0 auto;
   text-align: center;
 
+  .main {
+    width: 500px;
+    margin: $space-24 auto;
+
+    display: flex;
+    flex-direction: column;
+    row-gap: $space-24;
+  }
+
   header {
     display: grid;
     grid-template-columns: 1fr;
