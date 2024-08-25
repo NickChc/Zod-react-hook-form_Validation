@@ -64,7 +64,13 @@ export function RegisterForm() {
       const accounts = JSON.parse(localStorage.getItem(ACCOUNTS) || "[]");
       const { name, email, password, date } = data;
 
-      accounts.push({ name, email, password, birthday: date });
+      accounts.push({
+        name,
+        email,
+        password,
+        birthday: date,
+        id: crypto.randomUUID(),
+      });
 
       localStorage.setItem(ACCOUNTS, JSON.stringify(accounts));
       localStorage.setItem(

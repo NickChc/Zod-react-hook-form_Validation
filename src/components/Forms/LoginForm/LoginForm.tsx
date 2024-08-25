@@ -38,7 +38,6 @@ export function LoginForm() {
       });
 
       if (theUser) {
-        console.log("user exists");
         localStorage.setItem(USER, JSON.stringify(theUser));
         navigate("/profile");
         return;

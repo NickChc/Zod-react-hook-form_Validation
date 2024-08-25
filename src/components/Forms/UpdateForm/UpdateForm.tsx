@@ -1,59 +1,81 @@
 import "@src/components/Forms/Form.scss";
-import { TEditValue } from "@src/@types/general";
+import { TEditValue, TUser } from "@src/@types/general";
 import { FormInput } from "@src/components/FormInput";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@src/components/Button";
+import { useGlboalProvider } from "@src/providers/GlobalProvider";
+import { ACCOUNTS, USER } from "@src/config/storageKeys";
 
 interface UpdateFormProps {
   editValue: TEditValue;
   callbackFn: () => void;
 }
 
-const editSchema = z
-  .string()
-  .min(1, "The field is required")
-  .refine(
-    (val) => {
-      if (val === "name" && val.toLocaleLowerCase() === val) {
-        return false;
-      }
-      return true;
-    },
-    {
-      path: ["root"],
-      message: "Invalid Name",
-    }
-  )
-  .default("Nick");
-
 export function UpdateForm({ editValue, callbackFn }: UpdateFormProps) {
+  const { user, setUser } = useGlboalProvider();
+
+  const editSchema = z.object({
+    [editValue]: z.string().min(1, `Enter ${editValue} first`),
+  });
+
   const {
     handleSubmit,
     register,
     clearErrors,
     formState: { errors, isSubmitting: loading },
   } = useForm({
+    mode: "onSubmit",
+    reValidateMode: "onSubmit",
     resolver: zodResolver(editSchema),
-    defaultValues: { [editValue]: editValue },
+    defaultValues: { [editValue]: user?.[editValue] },
   });
 
-  function onSubmit() {
-    console.log("SUBMITTED");
+  async function onSubmit(data: { [editValue: string]: string | undefined }) {
     if (loading) return;
 
-    console.log(editValue);
+    try {
+      await new Promise((resolve) => {
+        setTimeout(resolve, 1000);
+      });
+
+      const savedAccs: TUser[] = JSON.parse(
+        localStorage.getItem(ACCOUNTS) || "[]"
+      );
+
+      const newUser = {
+        ...user,
+        [editValue]: data[editValue],
+      };
+
+      const newAccs = savedAccs.map((acc) => {
+        if (acc.id === newUser.id) {
+          return newUser;
+        }
+        return acc;
+      });
+
+      localStorage.setItem(ACCOUNTS, JSON.stringify(newAccs));
+      localStorage.setItem(USER, JSON.stringify(newUser));
+
+      setUser(newUser as TUser);
+
+      callbackFn();
+    } catch (err: any) {
+      console.log(err.message);
+    }
   }
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="form">
       <h1>{editValue.toUpperCase()}</h1>
       <FormInput
+        type={editValue === "password" ? "password" : "text"}
         name={editValue}
         register={register}
         placeholder={editValue}
-        error={errors.root?.message}
+        error={errors[editValue]?.message}
         onChange={(e) => clearErrors(e.target.name)}
       />
 
