@@ -64,18 +64,20 @@ export function RegisterForm() {
       const accounts = JSON.parse(localStorage.getItem(ACCOUNTS) || "[]");
       const { name, email, password, date } = data;
 
+      const id = crypto.randomUUID();
+
       accounts.push({
         name,
         email,
         password,
         birthday: date,
-        id: crypto.randomUUID(),
+        id,
       });
 
       localStorage.setItem(ACCOUNTS, JSON.stringify(accounts));
       localStorage.setItem(
         USER,
-        JSON.stringify({ name, email, password, birthday: date })
+        JSON.stringify({ name, email, password, birthday: date, id })
       );
 
       navigate("/profile");

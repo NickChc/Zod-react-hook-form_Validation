@@ -47,7 +47,7 @@ export function useUpdate(editValue: TEditValue) {
           },
           {
             message: "Year must be later than/equal to 1950",
-            path: ["date"],
+            path: ["birthday"],
           }
         )
         .refine(
@@ -58,7 +58,7 @@ export function useUpdate(editValue: TEditValue) {
           },
           {
             message: "Invalid month (1 - 12)",
-            path: ["date"],
+            path: ["birthday"],
           }
         )
         .refine(
@@ -71,7 +71,7 @@ export function useUpdate(editValue: TEditValue) {
             return true;
           },
           {
-            path: ["date"],
+            path: ["birthday"],
             message: "Specified month only has 31 days",
           }
         )
@@ -85,7 +85,7 @@ export function useUpdate(editValue: TEditValue) {
             return true;
           },
           {
-            path: ["date"],
+            path: ["birthday"],
             message: "Specified month only has 30 days",
           }
         )
@@ -100,7 +100,7 @@ export function useUpdate(editValue: TEditValue) {
             return true;
           },
           {
-            path: ["date"],
+            path: ["birthday"],
             message: "Specified month only has 29 days",
           }
         )

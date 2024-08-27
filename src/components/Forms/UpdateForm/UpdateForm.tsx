@@ -5,6 +5,7 @@ import { Button } from "@src/components/Button";
 import { useGlboalProvider } from "@src/providers/GlobalProvider";
 import { ACCOUNTS, USER } from "@src/config/storageKeys";
 import { useUpdate } from "@src/hooks/useUpdate";
+import { formatDate } from "@src/utils/formatters";
 
 interface UpdateFormProps {
   editValue: TEditValue;
@@ -17,9 +18,12 @@ export function UpdateForm({ editValue, callbackFn }: UpdateFormProps) {
     handleSubmit,
     register,
     clearErrors,
+    watch,
     formState: { errors, isSubmitting: loading },
     onDateChange,
   } = useUpdate(editValue);
+
+  const birthday = watch("birthday");
 
   async function onSubmit(data: { [editValue: string]: string | undefined }) {
     if (loading) return;
@@ -73,6 +77,10 @@ export function UpdateForm({ editValue, callbackFn }: UpdateFormProps) {
           }
         }}
       />
+
+      {editValue === "birthday" && (
+        <h4 className="year">{formatDate(birthday)}</h4>
+      )}
 
       <div className="buttons">
         <Button loading={loading} type="submit" laodingText="Editing...">

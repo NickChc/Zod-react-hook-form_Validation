@@ -32,7 +32,8 @@ export function dateInFutureRefine({
   date,
   birthday,
 }: DateInFutureRefineProps) {
-  const theDateString = birthday || date || "0000-00-00";
+  const theDateString = birthday || date || "";
+
   const theDate = new Date(theDateString);
   const currDate = new Date();
 

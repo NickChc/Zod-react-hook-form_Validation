@@ -8,14 +8,50 @@
   color: $clr-add;
 
   .pair-wrapper {
-    width: 50%;
+    width: fit-content;
+    max-width: 80%;
     margin: 0 auto;
+    font-size: 0.65rem;
+
+    @media (min-width: $screen-450) {
+      max-width: 55%;
+      font-size: 0.8rem;
+    }
+
+    @media (min-width: $screen-600) {
+      font-size: 1rem;
+    }
+
+    @media (min-width: $screen-900) {
+      font-size: 1.15rem;
+
+      & > .pair i {
+        font-size: 1.8rem;
+      }
+    }
+
+    @media (min-width: $screen-450) {
+      & > .pair i {
+        left: -20%;
+        font-size: 1.2rem;
+      }
+    }
+
+    @media (min-width: $screen-600) {
+      & > .pair i {
+        left: auto;
+        display: none;
+        right: -20%;
+        font-size: 1.6rem;
+      }
+    }
 
     display: flex;
     flex-direction: column;
     align-items: start;
     row-gap: $space-10;
     text-align: start;
+    position: relative;
   }
 
   .pair {
@@ -28,8 +64,21 @@
     justify-content: space-between;
     line-height: 1.75em;
 
+    width: fit-content;
+    max-width: 100%;
+
+    & > p {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
     i {
-      display: none;
+      position: absolute;
+      left: -$space-24;
+      font-size: 0.85rem;
+      right: auto;
+      display: block;
       padding: $space-4;
       background-color: transparent;
       border: 0;

@@ -17,6 +17,12 @@
   width: $space-4;
 }
 
+.year {
+  font-size: 1.4rem;
+  color: $clr-primary;
+  height: 1.5rem;
+}
+
 .form {
   width: 100%;
   min-width: fit-content;
@@ -90,6 +96,7 @@
   input,
   button {
     padding: 0.75em 1em;
+    font-size: 1rem;
   }
 }
 

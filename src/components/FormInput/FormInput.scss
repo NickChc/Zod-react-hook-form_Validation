@@ -91,7 +91,7 @@
   width: $space-12;
   aspect-ratio: 1 / 1;
 
-  @media (min-width: $screen-sm) {
+  @media (min-width: $screen-600) {
     width: $space-20;
   }
 }

@@ -11,11 +11,20 @@ export function UserData({ user, handleEditValue }: UserDataProps) {
     <div className="user-data">
       <div className="pair-wrapper">
         {Object.keys(user).map((key) => {
+          if (key === "id") return;
           const k = key as keyof TUser;
+          const value = user[k];
 
           return (
             <h3 key={key} className="pair" onClick={() => handleEditValue(k)}>
-              {key.replace("date", "birthday")} - {user[k]}
+              {key.replace("date", "birthday")} -{" "}
+              <p>
+                {k === "password"
+                  ? value.replace(/[\s\S]/g, "*")
+                  : k === "birthday"
+                  ? value.replace(/-/g, "/")
+                  : value}
+              </p>
               <i className="material-icons">edit</i>
             </h3>
           );
