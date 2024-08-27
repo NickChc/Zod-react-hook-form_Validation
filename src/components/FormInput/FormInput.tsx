@@ -9,6 +9,7 @@ import {
 
 interface FormInputProps<T extends FieldValues> {
   register: UseFormRegister<T>;
+  placeholder?: string;
   name: Path<T>;
   label?: string;
   type?: "text" | "password" | "checkbox";
@@ -20,6 +21,7 @@ interface FormInputProps<T extends FieldValues> {
 
 export function FormInput<T extends FieldValues>({
   label,
+  placeholder,
   type,
   register,
   name,
@@ -37,6 +39,7 @@ export function FormInput<T extends FieldValues>({
         <input
           {...register(name, rules)}
           {...rest}
+          placeholder={placeholder}
           name={name as string}
           onChange={
             onChange

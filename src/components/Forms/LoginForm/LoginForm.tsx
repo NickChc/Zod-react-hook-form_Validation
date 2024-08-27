@@ -54,6 +54,7 @@ export function LoginForm() {
       <h1>Log In</h1>
       <div className="main">
         <FormInput
+          placeholder="Jon"
           register={register}
           onChange={onChange}
           error={errors.email?.message}
@@ -63,6 +64,7 @@ export function LoginForm() {
 
         <hr />
         <FormInput
+          placeholder="********"
           onChange={onChange}
           error={errors.password?.message}
           register={register}

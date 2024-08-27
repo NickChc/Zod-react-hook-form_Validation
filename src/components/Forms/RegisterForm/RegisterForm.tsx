@@ -91,6 +91,7 @@ export function RegisterForm() {
       <h1>Register</h1>
       <div className="main">
         <FormInput
+          placeholder="Jon"
           register={register}
           onChange={onChange}
           error={errors.name?.message}
@@ -101,6 +102,7 @@ export function RegisterForm() {
         <hr />
 
         <FormInput
+          placeholder="jondoe@gmail.com"
           register={register}
           onChange={onChange}
           error={errors.email?.message}
@@ -116,12 +118,13 @@ export function RegisterForm() {
           register={register}
           name="date"
           label="Birth Date:"
-          placeholder="yyyy-mm-dd"
+          placeholder="1995-05-23"
         />
 
         <hr />
 
         <FormInput
+          placeholder="********"
           onChange={onChange}
           error={errors.password?.message}
           register={register}
@@ -133,6 +136,7 @@ export function RegisterForm() {
         <hr />
 
         <FormInput
+          placeholder="********"
           onChange={onChange}
           error={errors["repeat-password"]?.message}
           register={register}
