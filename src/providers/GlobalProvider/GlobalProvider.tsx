@@ -4,12 +4,7 @@ import { useState } from "react";
 import { Outlet } from "react-router-dom";
 
 export function GlobalProvider() {
-  const [user, setUser] = useState<TUser | null>({
-    name: "Jon",
-    email: "wdad",
-    birthday: "BD",
-    password: "awdad",
-  });
+  const [user, setUser] = useState<TUser | null>(null);
 
   return (
     <GlobalContext.Provider
