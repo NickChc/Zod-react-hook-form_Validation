@@ -18,6 +18,7 @@ export function UpdateForm({ editValue, callbackFn }: UpdateFormProps) {
     register,
     clearErrors,
     formState: { errors, isSubmitting: loading },
+    onDateChange,
   } = useUpdate(editValue);
 
   async function onSubmit(data: { [editValue: string]: string | undefined }) {
@@ -64,7 +65,13 @@ export function UpdateForm({ editValue, callbackFn }: UpdateFormProps) {
         register={register}
         placeholder={editValue}
         error={errors[editValue]?.message}
-        onChange={(e) => clearErrors(e.target.name)}
+        onChange={(e) => {
+          if (editValue === "birthday") {
+            onDateChange(e);
+          } else {
+            clearErrors(e.target.name);
+          }
+        }}
       />
 
       <div className="buttons">

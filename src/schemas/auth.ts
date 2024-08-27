@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
+const dateRegex = /^\d{4}-\d{2}-(0[1-9]|[12]\d|3[01])$/;
 
 export const passwordSchema = z
   .string()
@@ -22,3 +22,21 @@ export const nameSchema = z
   .min(1, "Enter name")
   .min(3, "Name must include at least 3 letters")
   .regex(/^[A-Z]/, "Name must start with an uppercase letter");
+
+interface DateInFutureRefineProps {
+  birthday?: string;
+  date?: string;
+}
+
+export function dateInFutureRefine({
+  date,
+  birthday,
+}: DateInFutureRefineProps) {
+  const theDateString = birthday || date || "0000-00-00";
+  const theDate = new Date(theDateString);
+  const currDate = new Date();
+
+  currDate.setHours(0, 0, 0, 0);
+
+  return theDate < currDate;
+}

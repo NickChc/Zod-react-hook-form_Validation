@@ -1,10 +1,13 @@
 import { zodResolver } from "@hookform/resolvers/zod";
-import { birthdaySchema, nameSchema, passwordSchema } from "@src/schemas/auth";
+import { month_30, month_31 } from "@src/mocks/general";
+import {
+  birthdaySchema,
+  dateInFutureRefine,
+  nameSchema,
+  passwordSchema,
+} from "@src/schemas/auth";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-
-const month_31 = [1, 3, 5, 7, 8, 10, 12];
-const month_30 = [4, 6, 9, 11];
 
 const registerSchema = z
   .object({
@@ -85,7 +88,11 @@ const registerSchema = z
       path: ["date"],
       message: "Specified month only has 29 days",
     }
-  );
+  )
+  .refine(dateInFutureRefine, {
+    path: ["date"],
+    message: "This date is in future",
+  });
 
 export type TRegisterData = z.infer<typeof registerSchema>;
 
