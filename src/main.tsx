@@ -8,6 +8,7 @@ import {
 } from "react-router-dom";
 import { PublicLayout } from "@src/layouts/PublicLayout";
 import { GlobalProvider } from "./providers/GlobalProvider";
+import { PrivateRoute } from "@src/features/PrivateRoute";
 
 const SignInPage = lazy(() => import("@src/views/SignInPage"));
 const SignUpPage = lazy(() => import("@src/views/SignUpPage"));
@@ -32,7 +33,11 @@ const routes: RouteObject[] = [
           },
           {
             path: "/profile",
-            element: <ProfilePage />,
+            element: (
+              <PrivateRoute>
+                <ProfilePage />
+              </PrivateRoute>
+            ),
           },
         ],
       },
