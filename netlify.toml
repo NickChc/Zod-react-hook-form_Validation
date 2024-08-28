@@ -1,6 +1,6 @@
 [build]
-  publish = "build"  # or "dist", "public", etc., depending on your setup
-  command = "npm run build"  # or the build command you use
+  dist = "build"
+  command = "npm run build"
 
 [[redirects]]
   from = "/*"
