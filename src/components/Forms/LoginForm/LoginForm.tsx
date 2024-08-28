@@ -54,7 +54,7 @@ export function LoginForm() {
       <h1>Log In</h1>
       <div className="main">
         <FormInput
-          placeholder="Jon"
+          placeholder="jondoe@gmail.com"
           register={register}
           onChange={onChange}
           error={errors.email?.message}
